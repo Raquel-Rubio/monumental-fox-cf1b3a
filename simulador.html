@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Simulador de Rotação 3D - Gato Maxwell</title>
+  <script src="https://aframe.io/releases/1.3.0/aframe.min.js"></script>
+  <style>
+    body { font-family: sans-serif; margin: 0; overflow: hidden; }
+    /* Estilo do painel de controle sobreposto na tela */
+    #painel {
+      position: absolute;
+      top: 20px;
+      left: 20px;
+      z-index: 100;
+      background: rgba(255, 255, 255, 0.95);
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0px 4px 10px rgba(0,0,0,0.3);
+    }
+    .controle { margin-bottom: 15px; }
+    input[type=range] { width: 250px; }
+    label { font-weight: bold; }
+  </style>
+</head>
+<body>
+
+  <div id="painel">
+    <h3>Ajuste a Rotação</h3>
+    
+    <div class="controle">
+      <label>Eixo X (Levantar/Deitar): <span id="valorX">0</span>°</label><br>
+      <input type="range" id="rotX" min="-180" max="180" value="0">
+    </div>
+    
+    <div class="controle">
+      <label>Eixo Y (Giro Lateral): <span id="valorY">0</span>°</label><br>
+      <input type="range" id="rotY" min="-180" max="180" value="0">
+    </div>
+    
+    <div class="controle">
+      <label>Eixo Z (Ponteiro de Relógio): <span id="valorZ">0</span>°</label><br>
+      <input type="range" id="rotZ" min="-180" max="180" value="0">
+    </div>
+  </div>
+
+  <a-scene>
+    <a-sky color="#ECECEC"></a-sky>
+
+    <a-plane position="0 1.5 -3" width="2" height="1.5" color="#222" 
+             text="value: TELA DO PC; align: center; width: 6; color: white"></a-plane>
+    
+    <a-entity id="gato" 
+              gltf-model="url(cat.glb)" 
+              position="0 1.5 -2.8" 
+              scale="2.5 2.5 2.5" 
+              rotation="0 0 0">
+    </a-entity>
+
+    <a-light type="ambient" color="#BBB"></a-light>
+    <a-light type="directional" intensity="0.8" position="-1 4 5"></a-light>
+
+    <a-camera position="0 1.5 0" look-controls="enabled: false" wasd-controls="enabled: false"></a-camera>
+  </a-scene>
+
+  <script>
+    const gato = document.querySelector('#gato');
+    const rotX = document.querySelector('#rotX');
+    const rotY = document.querySelector('#rotY');
+    const rotZ = document.querySelector('#rotZ');
+    
+    const valorX = document.querySelector('#valorX');
+    const valorY = document.querySelector('#valorY');
+    const valorZ = document.querySelector('#valorZ');
+
+    // Função que atualiza a rotação toda vez que você mexe em um controle
+    function atualizarRotacao() {
+      const x = rotX.value;
+      const y = rotY.value;
+      const z = rotZ.value;
+      
+      // Atualiza os números no texto
+      valorX.innerText = x;
+      valorY.innerText = y;
+      valorZ.innerText = z;
+      
+      // Aplica a nova rotação no modelo 3D do gato
+      gato.setAttribute('rotation', `${x} ${y} ${z}`);
+    }
+
+    // Escuta os movimentos do mouse nos controles
+    rotX.addEventListener('input', atualizarRotacao);
+    rotY.addEventListener('input', atualizarRotacao);
+    rotZ.addEventListener('input', atualizarRotacao);
+  </script>
+
+</body>
+</html>
