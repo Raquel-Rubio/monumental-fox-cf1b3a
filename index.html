@@ -14,10 +14,10 @@
     <a-marker preset="hiro">
       <a-entity position="0 0 0" rotation="-90 0 0">
           <a-entity  class="tocavel" gesture-handler
-                gltf-model="url(cat.glb)" scale="2.5 2.5 2.5" position="0 0 0" rotation="0 -90 0"
+                gltf-model="url(cat.glb)" scale="2.5 2.5 2.5" position="0 0 0" rotation="0 90 0"
                 animation__grow="property: scale; to: 3 3 3; dur:120; startEvents: mousedown"
                 animation__shrink="property: scale; to: 2.5 2.5 2.5; dur:120; startEvents: mouseup"
-                animation__spin="property: rotation; from: 0 -90 0; to: 0 810 0; dur: 1500; easing: linear; startEvents: click;">
+                animation__spin="property: rotation; from: 0 90 0; to: 0 810 0; dur: 1500; easing: linear; startEvents: click;">
           </a-entity>
       </a-entity>
       <a-light type="ambient"    color="#BBB"></a-light>
