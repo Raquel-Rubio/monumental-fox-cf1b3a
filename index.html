@@ -12,11 +12,13 @@
     <a-entity camera cursor="rayOrigin: mouse; fuse:false"
               raycaster="objects: .tocavel"></a-entity>
     <a-marker preset="hiro">
-      <a-entity  class="tocavel" gesture-handler
-            gltf-model="url(cat.glb)" scale="2.5 2.5 2.5" position="0 0 0" rotation="-90 0 180"
-            animation__grow="property: scale; to: 3 3 3; dur:120; startEvents: mousedown"
-            animation__shrink="property: scale; to: 2.5 2.5 2.5; dur:120; startEvents: mouseup"
-            animation__spin="property: rotation; from: -90 0 180; to: -90 0 -90; dur: 3000; easing: linear; startEvents: click;">
+      <a-entity position="0 0 0" rotation="-90 0 0">
+          <a-entity  class="tocavel" gesture-handler
+                gltf-model="url(cat.glb)" scale="2.5 2.5 2.5" position="0 0 0" rotation="0 -90 0"
+                animation__grow="property: scale; to: 3 3 3; dur:120; startEvents: mousedown"
+                animation__shrink="property: scale; to: 2.5 2.5 2.5; dur:120; startEvents: mouseup"
+                animation__spin="property: rotation; from: 0 -90 0; to: 0 810 0; dur: 1500; easing: linear; startEvents: click;">
+          </a-entity>
       </a-entity>
       <a-light type="ambient"    color="#BBB"></a-light>
       <a-light type="directional" intensity="0.8" position="-1 4 5"></a-light>
